@@ -1,1 +1,1 @@
-Github上でファイルを更新
+confloct-remote上でファイルを更新(コンフリクト発生)
