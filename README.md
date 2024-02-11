@@ -23,3 +23,30 @@
   * filename1: 削除されたことがgitでworking directory上での削除
   * filename2: **untrackとして**working directoryに追加される
   * ファイルの削除をstaging areaに追加するには、**git add -A** をすればよい
+### ファイルの削除をGitで管理する
+* git rm < file name >
+* staging area(index)に作業内容があるファイルは削除できない
+* コミット済みのファイルを削除する
+  * 対象のコミット
+  * git rm < filename >
+  * ファイルを削除したという情報が、staging areaに追加される(working directoryには追加されない)
+  * 再度コミットする
+* コミット済みのファイルを削除してしまったが、元に戻す
+  * 対象のコミットd
+  * git rm < filename >
+  * ファイルを削除したという情報が、staging areaに追加される(working directoryには追加されない)
+  * git restore --staged < filename >で、working directoryにファイル削除した情報が追加される
+  * git restore < filename >でworking directory上のファイル削除の情報を無しにして復元する
+### コミット情報を表示する
+* コミット履歴を一覧表示する(**git log**)
+  * --oneline: 各コミットを1行で表示する
+  * --graph: 各コミットを線で結ぶ
+  * -- < filename >: 特定のファイルの情報を表示する
+  * --follow < filename >: ファイル名の変更も考慮して履歴を表示する
+* 特定のコミット情報を表示する(**git show < commit ID >**)
+
+### コミットについて
+* コミットは線で繋がっている
+* コミットポイントが作られると、前のコミットの子コミットになる
+* ブランチはコミットを指すただのポインタ
+* HEAEDは今自分が作業しているブランチへのポインタ
