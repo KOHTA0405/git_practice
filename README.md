@@ -1,0 +1,52 @@
+# Gitの基本操作
+## gitリポジトリの作成方法
+1. スクラッチから作成する(**git init < project name >**)
+2. 既存のローカルフォルダをgitリポジトリにする(該当フォルダ内で、**git init**)
+3. 既存のリモートリポジトリから作成する
+   1. リモートリポジトリから**git clone**して、ローカルリポジトリを作成
+   2. 既存のリモートリポジトリを**fork**して自分のリモートリポジトリにコピー
+
+## ローカルリポジトリでの作業
+### untrack: git addのようなコマンドを実行していないファイルは、git管理の外にある状態
+### staging area: commit前の状態のファイルを修正すると、staging areaには修正前の状態が残り、変更後の情報は、working directoryのtrack済みに入る
+### unstage:
+* stagingにaddした作業をキャンセルする
+* **git restore --staged < file >**
+### working directoryでの作業をキャンセル
+* 修正前の状態に戻したい
+* エディタのundoなどでも戻せるが、過信はできない
+* **git restore < file >**
+### ファイル名の変更をgitで管理する
+* **git mv < filename1 > < filename2 >**
+* working directoryにはいかず、その時点でstaging areaに
+* 通常のmvコマンドをした場合は、filename1を削除し、新たにfilename2を作成
+  * filename1: 削除されたことがgitでworking directory上での削除
+  * filename2: **untrackとして**working directoryに追加される
+  * ファイルの削除をstaging areaに追加するには、**git add -A** をすればよい
+### ファイルの削除をGitで管理する
+* git rm < file name >
+* staging area(index)に作業内容があるファイルは削除できない
+* コミット済みのファイルを削除する
+  * 対象のコミット
+  * git rm < filename >
+  * ファイルを削除したという情報が、staging areaに追加される(working directoryには追加されない)
+  * 再度コミットする
+* コミット済みのファイルを削除してしまったが、元に戻す
+  * 対象のコミットd
+  * git rm < filename >
+  * ファイルを削除したという情報が、staging areaに追加される(working directoryには追加されない)
+  * git restore --staged < filename >で、working directoryにファイル削除した情報が追加される
+  * git restore < filename >でworking directory上のファイル削除の情報を無しにして復元する
+### コミット情報を表示する
+* コミット履歴を一覧表示する(**git log**)
+  * --oneline: 各コミットを1行で表示する
+  * --graph: 各コミットを線で結ぶ
+  * -- < filename >: 特定のファイルの情報を表示する
+  * --follow < filename >: ファイル名の変更も考慮して履歴を表示する
+* 特定のコミット情報を表示する(**git show < commit ID >**)
+
+### コミットについて
+* コミットは線で繋がっている
+* コミットポイントが作られると、前のコミットの子コミットになる
+* ブランチはコミットを指すただのポインタ
+* HEAEDは今自分が作業しているブランチへのポインタ
