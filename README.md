@@ -71,6 +71,7 @@
 * Fast forwardではない場合に起きるケース(裏ではマージ先と、マージしたい対象を親にしたマージコミットが作られる)
   * Automatic merge
   * Conflict: 発生した場合はエディタで直接解決するか、ツールを使って解決してからコミット
+
 ## リモートリポジトリ
 ### fetch: リモートリポから情報を取得する
 * pull = **fetch** + merge
@@ -81,3 +82,13 @@
 * →その場合は、
   * git pull origin mainした時のconflictを対処
   * gitt add & git commitでコンフリクトに対処して、ローカルのリポジトリに反映させる
+
+## diff
+* **git diff**: デフォルトでは、working directoryとstaging areaの差分
+* **git diff HEAD**: working directoryとリポジトリの差分
+* **git diff --staged HEAD**: staging areaとリポジトリの差分
+* **git diff -- < filename >**: 特定のファイルの差分を表示
+* **git diff < baseのcommitID > < 　新しいcommitID　>**: 特定のcommit同士のdiffを確認
+  * HEAD^: HEADの親のコミット
+  * HEAD^^: HEADの親の親のコミット
+* **git diff < branchname > < branchname >**: ブランチ同士の差分を確認する
