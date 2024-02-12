@@ -92,3 +92,10 @@
   * HEAD^: HEADの親のコミット
   * HEAD^^: HEADの親の親のコミット
 * **git diff < branchname > < branchname >**: ブランチ同士の差分を確認する
+
+## Rebase
+* git rebase < branchname >
+  * マージコミットが作られずに、履歴が1本になる
+  * **既存のコミットを削除**し、新たなコミットを作る
+    * 一度remoteにpush済みのコミットはrebaseしない(他の人がそのコミットをpullしてローカルに残るかもしれない)
+    * →基本的に自分のローカルの作業にのみrebaseはする
